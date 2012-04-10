@@ -23,19 +23,26 @@
 			echo $this->fetch('css');
 			echo $this->fetch('script');
 		?>
+		<style type="text/css">
+		body {
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+		}
+		</style>
 	</head>
 	<body>
 		<?php echo $this->element('nav');?>
-		<div id="container">
-			<div id="content">
+		<div id="container-fluid">
+			<div id="row-fluid">
 				<?php echo $this->Session->flash(); ?>
 				<?php echo $this->Session->flash('auth'); ?>
 
-				<?php echo $this->fetch('content'); ?>
-
 				<?php echo $this->element('menu');?>
+
+				<div class="span9">
+					<?php echo $this->fetch('content'); ?>
+					<?php echo $this->element('footer');?>
+				</div>
 			</div>
-			<?php echo $this->element('footer');?>
 		</div>
 	</body>
 	<?php echo $this->Js->writeBuffer();?>
