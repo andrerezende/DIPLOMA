@@ -2,20 +2,17 @@
 <html lang="pt-br">
 	<head>
 		<?php echo $this->Html->charset(); ?>
-		<title>
-			Diplomas - 
-			<?php echo $title_for_layout; ?>
-		</title>
+		<title>Diplomas - <?php echo $title_for_layout; ?></title>
 		<?php
 			echo $this->Html->meta('icon');
 
+			echo $this->Util->js();
 			echo $this->Html->css(array(
 				'bootstrap',
 				'bootstrap-responsive',
 			));
 			echo $this->Html->script(array(
 				'jquery',
-				'jquery.maskedinput',
 				'bootstrap',
 			));
 
@@ -33,12 +30,12 @@
 		<?php echo $this->element('nav');?>
 		<div id="container-fluid">
 			<div id="row-fluid">
-				<?php echo $this->Session->flash(); ?>
-				<?php echo $this->Session->flash('auth'); ?>
-
 				<?php echo $this->element('menu');?>
 
 				<div class="span9">
+					<?php echo $this->Session->flash(); ?>
+					<?php echo $this->Session->flash('auth'); ?>
+					
 					<?php echo $this->fetch('content'); ?>
 					<?php echo $this->element('footer');?>
 				</div>

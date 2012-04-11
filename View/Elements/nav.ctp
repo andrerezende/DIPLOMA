@@ -12,11 +12,11 @@
 					<?php if (isset($userData) && !empty($userData)) :?>
 						<li>
 							<p class="navbar-text">
-								Logado como <?php echo $this->Html->link($userData['login'], array('controller' => 'usuarios', 'action' => 'edit', $userData['id']));?>
+								<?php echo $this->Html->link('<i class="icon-user icon-white"></i> ' . $userData['login'], '#', array('escape' => false));?>
 							</p>
 						</li>
 						<li class="divider-vertical"></li>
-						<li><?php echo $this->Html->link('Sair', array('controller' => 'usuarios', 'action' => 'logout'));?></li>
+						<li><?php echo $this->Html->link(__('Sair') . ' <i class="icon-off icon-white"></i>', array('controller' => 'usuarios', 'action' => 'logout'), array('escape' => false));?></li>
 					<?php else:?>
 						<li class="divider-vertical"></li>
 						<li><?php echo $this->Html->link('Entrar', array('controller' => 'usuarios', 'action' => 'login'));?></li>
