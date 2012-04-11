@@ -41,7 +41,7 @@ class AppController extends Controller {
 		parent::afterFilter();
 
 		if (!empty($this->request->params['url']['ext']) && $this->request->params['url']['ext'] === 'json') {
-//			Configure::write('debug', 0);
+			Configure::write('debug', 0);
 		}
 	}
 
