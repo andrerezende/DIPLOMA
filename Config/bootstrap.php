@@ -43,3 +43,14 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 CakePlugin::load('CakePtbr', array('bootstrap' => true));
+
+/**
+ * JasperServer configuration
+ */
+Configure::write('Jasper.ServerUrl', 'http://localhost:8085/jasperserver/services/');
+Configure::write('Jasper.WebServiceUri', Configure::read('Jasper.ServerUrl') . 'repository');
+Configure::write('Jasper.Namespace', 'http://www.jaspersoft.com/namespaces/php');
+Configure::write('Jasper.CurrentUri', '/reports/Diploma');
+Configure::write('Jasper.User', 'jasperadmin');
+Configure::write('Jasper.Password', 'jasperadmin');
+Configure::write('Jasper.Format', 'PDF');
