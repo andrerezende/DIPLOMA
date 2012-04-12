@@ -8,40 +8,42 @@ $(document).ready(function() {
 	$('#DiplomaGerarForm').submit(function(e) {
 		e.preventDefault();
 		var btn = $("#gerar");
-		btn.button("loading");
-
-		$.ajax({
-			type: "GET",
-			dataType: "text",
-			url: Diplomas.basePath + Diplomas.params["controller"] + "/getNomeAluno.json",
-			data: "cpf=" + $("#DiplomaCpf").val(),
-			success: function(data, textStatus, jqXHR) {
-				console.log(data);
-				console.log($(data).is("p"));
-				if ($(data).is("p")) {
-					$("#modal-text").html(data);
-					$("#error").modal({
-						backdrop: true,
-						keyboard: true,
-						show: true
-					});
-				} else {
-					$("#DiplomaNome").val(data);
+		if ($(btn).val() == "Carregar") {
+			btn.button("loading");
+			$.ajax({
+				type: "GET",
+				dataType: "text",
+				url: Diplomas.basePath + Diplomas.params["controller"] + "/getNomeAluno.json",
+				data: "cpf=" + $("#DiplomaCpf").val(),
+				success: function(data, textStatus, jqXHR) {
+					if ($(data).is("p")) {
+						$("#modal-text").html(data);
+						$("#error").modal({
+							backdrop: true,
+							keyboard: true,
+							show: true
+						});
+					} else {
+						$("#DiplomaNome").val(data);
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+				},
+				complete: function(jqXHR, textStatus) {
+					console.log($("#DiplomaNome").val());
+					if ($("#DiplomaNome").val() != "") {
+						btn.button("complete");
+					} else {
+						$("#gerar").button("reset");
+					}
 				}
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				console.log(jqXHR);
-				console.log(textStatus);
-				console.log(errorThrown);
-			},
-			complete: function(jqXHR, textStatus) {
-				if ($("#DiplomaNome").val() != undefined) {
-					btn.button("complete");
-				} else {
-					$("#gerar").button("reset");
-				}
-			}
-		});
+			});
+		} else {
+			$('#DiplomaGerarForm').get(0).submit();
+		}
 	});
 });
 </script>
