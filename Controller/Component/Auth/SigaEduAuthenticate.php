@@ -9,7 +9,6 @@ App::uses('Security', 'Utility');
  *
  * @package       Controller
  * @subpackage    Component.Auth
- *
  * @author        Vitor Pacheco <vitor.pacheco@ifbaiano.edu.br>
  */
 class SigaEduAuthenticate extends BaseAuthenticate {

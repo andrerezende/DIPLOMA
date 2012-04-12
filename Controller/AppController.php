@@ -2,22 +2,37 @@
 App::uses('Controller', 'Controller');
 
 /**
- * Application Controller
+ * AppController
  *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
+ * PHP version 5
  *
- * @package       app.Controller
- * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package     Controller
+ * @author      Vitor Pacheco <vitor.pacheco@ifbaiano.edu.br>
+ *
+ * @property    Auth              $Auth
+ * @property    Session           $Session
+ * @property    RequestHandler    $RequestHandler
  */
 class AppController extends Controller {
 
+/**
+ * Names of components this controller
+ *
+ * @access public
+ * @var array
+ */
 	public $components = array(
 		'Auth',
 		'Session',
 		'RequestHandler',
 	);
 
+/**
+ * Names of helpers this controller
+ *
+ * @var array
+ * @access public
+ */
 	public $helpers = array(
 		'Html',
 		'Form',
@@ -26,6 +41,12 @@ class AppController extends Controller {
 		'Util',
 	);
 
+/**
+ * beforeFilter callback
+ *
+ * @access public
+ * @return void
+ */
 	public function beforeFilter() {
 		parent::beforeFilter();
 
@@ -37,6 +58,15 @@ class AppController extends Controller {
 		}
 	}
 
+/**
+ * afterFilter callback
+ *
+ * Disable debug mode on JSON pages to prevent the script execution time to be appended to
+ * the page.
+ *
+ * @access public
+ * @return void
+ */
 	public function afterFilter() {
 		parent::afterFilter();
 
@@ -45,6 +75,12 @@ class AppController extends Controller {
 		}
 	}
 
+/**
+ * setUpAuth method
+ *
+ * @access protected
+ * @return void
+ */
 	protected function _setUpAuth() {
 		$this->Auth->authenticate = array(
 			'SigaEdu' => array(
@@ -65,6 +101,12 @@ class AppController extends Controller {
 		$this->__setUpAuthActions();
 	}
 
+/**
+ * setUpUser method
+ *
+ * @access protected
+ * @return void
+ */
 	protected function _setUpUser() {
 		$userData = $this->Auth->user();
 		if ($userData) {
@@ -72,6 +114,12 @@ class AppController extends Controller {
 		}
 	}
 
+/**
+ * setUpAuthActions method
+ *
+ * @access private
+ * @return void
+ */
 	private function __setUpAuthActions() {
 		$this->Auth->loginAction = array(
 			'admin' => false,
