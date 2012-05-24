@@ -101,7 +101,7 @@ class DiplomasController extends AppController {
  */
 	public function getNomeAluno() {
 		if ($this->request->is('ajax')) {
-			$aluno = $this->Diploma->getNomeAluno($this->request->query['cpf']);
+			$aluno = $this->Diploma->getNomeAluno((float)$this->request->query['cpf']);
 			if (!empty($aluno)) {
 				$this->set('aluno', $aluno);
 			} else {
